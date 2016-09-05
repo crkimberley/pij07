@@ -4,6 +4,12 @@ import java.util.Scanner;
  * @author crkimberley on 05/09/2016.
  */
 public class Marks {
+    private final static int MINIMUM = 0;
+    private final static int MAXIMUM = 100;
+    private final static int DISTINCTION = 70;
+    private final static int PASS = 50;
+    private final static int LIST_END = -1;
+
     public static void main(String[] args) {
         Marks marks = new Marks();
         marks.launch();
@@ -12,25 +18,27 @@ public class Marks {
     private void launch() {
         Scanner input = new Scanner(System.in);
         int mk;
-        int markCount = -1;
-        int invalidCount = 0;
+        int markCount = 0;
+        int invalidCount = -1;
         int distinctionCount = 0;
         int passCount = 0;
         int failCount = 0;
         do {
             System.out.print("Enter mark (-1 to stop): ");
             mk = input.nextInt();
-            markCount++;
-            if (mk < -1 || mk > 100) {
+            if (mk < MINIMUM || mk > MAXIMUM) {
                 invalidCount++;
-            } else if (mk >= 70) {
-                distinctionCount++;
-            } else if (mk >= 50) {
-                passCount++;
-            } else if (mk >= 0) {
-                failCount++;
+            } else {
+                markCount++;
+                if (mk >= DISTINCTION) {
+                    distinctionCount++;
+                } else if (mk >= PASS) {
+                    passCount++;
+                } else {
+                    failCount++;
+                }
             }
-        } while (mk != -1);
+        } while (mk != LIST_END);
         System.out.println("Total number of marks = " + markCount);
         System.out.println("Distinctions: " + distinctionCount);
         System.out.println("Passes: " + passCount);
