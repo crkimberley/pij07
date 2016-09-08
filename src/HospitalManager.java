@@ -53,6 +53,10 @@ public class HospitalManager {
         System.out.println("Demonstrate we can't delete firstPatient from inside the list");
         patientListStart.deletePatient(firstPatient);
         printPatients(patientListStart);
+
+        System.out.println("Delete firstPatient using deleteFirstPatient()");
+        deleteFirstPatient();
+        printPatients(patientListStart);
     }
 
     private void printPatients(Patient patient) {
@@ -65,5 +69,9 @@ public class HospitalManager {
         }
         System.out.printf(" %-12s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
         printPatients(patient.getNextPatient());
+    }
+
+    private void deleteFirstPatient() {
+        patientListStart = patientListStart.getNextPatient();
     }
 }

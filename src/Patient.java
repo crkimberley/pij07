@@ -28,7 +28,8 @@ public class Patient {
         if (nextPatient == null) {
             // patient to remove was not found
             return false;
-        } else if (nextPatient.name.equals(patient.name)) {
+        }
+        else if (nextPatient.name.equals(patient.name)) {
             // We found it! It is the next one!
             // Now link this patient to the one after the next
             nextPatient = nextPatient.nextPatient;
@@ -54,6 +55,4 @@ public class Patient {
     public Patient getNextPatient() {
         return nextPatient;
     }
-
-
 }
