@@ -61,14 +61,16 @@ public class HospitalManager {
 
     private void printPatients(Patient patient) {
         if (patient == patientListStart) {
-            System.out.println("\n================================");
+            System.out.println("\n========================================");
         }
         if (patient == null) {
-            System.out.println("================================\n" +
-                    " List length = " + listLengthRecursive(patientListStart) + "\n================================\n");
+            System.out.println("========================================\n"
+                    + " length = " + listLengthRecursive(patientListStart) + " (recursive)"
+                    + " " + listLengthIterative(patientListStart) + " (iterative)"
+                    + "\n========================================\n");
             return;
         }
-        System.out.printf(" %-12s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
+        System.out.printf(" %-20s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
         printPatients(patient.getNextPatient());
     }
 
@@ -85,5 +87,18 @@ public class HospitalManager {
         } else {
             return 1 + listLengthRecursive(patient.getNextPatient());
         }
+    }
+
+    private int listLengthIterative(Patient patient) {
+        if (patient == null) {
+            return 0;
+        }
+        Patient temp = patient;
+        int length = 1;
+        while(temp.getNextPatient() != null) {
+            length++;
+            temp = temp.getNextPatient();
+        }
+        return length;
     }
 }
