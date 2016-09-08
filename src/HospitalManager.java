@@ -11,7 +11,8 @@ public class HospitalManager {
     }
 
     private void launch() {
-        Patient patientListStart = new Patient("Andy", 33, "Tuberculosis");
+        Patient firstPatient = new Patient("Andy", 33, "Tuberculosis");
+        patientListStart = firstPatient;
 
         Patient p2 = new Patient("Bob", 40, "Cancer");
         patientListStart.addPatient(p2);
