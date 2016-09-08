@@ -90,14 +90,11 @@ public class HospitalManager {
     }
 
     private int listLengthIterative(Patient patient) {
-        if (patient == null) {
-            return 0;
-        }
-        Patient temp = patient;
-        int length = 1;
-        while(temp.getNextPatient() != null) {
+        Patient nextPatient = patientListStart;
+        int length = 0;
+        while(nextPatient != null) {
             length++;
-            temp = temp.getNextPatient();
+            nextPatient = nextPatient.getNextPatient();
         }
         return length;
     }
