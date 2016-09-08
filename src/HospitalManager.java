@@ -64,7 +64,8 @@ public class HospitalManager {
             System.out.println("\n================================");
         }
         if (patient == null) {
-            System.out.println("================================\n");
+            System.out.println("================================\n" +
+                    " List length = " + listLengthRecursive(patientListStart) + "\n================================\n");
             return;
         }
         System.out.printf(" %-12s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
@@ -73,5 +74,16 @@ public class HospitalManager {
 
     private void deleteFirstPatient() {
         patientListStart = patientListStart.getNextPatient();
+    }
+
+    private int listLengthRecursive(Patient patient) {
+        if (patient == null) {
+            return 0;
+        }
+        if (patient.getNextPatient() == null) {
+            return 1;
+        } else {
+            return 1 + listLengthRecursive(patient.getNextPatient());
+        }
     }
 }
