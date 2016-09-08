@@ -2,7 +2,7 @@
  * @author crkimberley on 09/09/2016.
  */
 public class HospitalDoublyLinked {
-    private Patient patientListStart = null;
+    private PatientDoublyLinked patientListStart = null;
 
     public static void main(String[] args) {
         HospitalDoublyLinked hdl = new HospitalDoublyLinked();
@@ -10,26 +10,26 @@ public class HospitalDoublyLinked {
     }
 
     private void launch() {
-        Patient firstPatient = new Patient("Andy", 33, "Tuberculosis");
+        PatientDoublyLinked firstPatient = new PatientDoublyLinked("Andy", 33, "Tuberculosis");
         patientListStart = firstPatient;
 
-        Patient p2 = new Patient("Bob", 40, "Cancer");
+        PatientDoublyLinked p2 = new PatientDoublyLinked("Bob", 40, "Cancer");
         patientListStart.addPatient(p2);
-        Patient p3 = new Patient("Claire", 46, "Lurgy");
+        PatientDoublyLinked p3 = new PatientDoublyLinked("Claire", 46, "Lurgy");
         patientListStart.addPatient(p3);
-        Patient p4 = new Patient("Debbie", 80, "Measles");
+        PatientDoublyLinked p4 = new PatientDoublyLinked("Debbie", 80, "Measles");
         patientListStart.addPatient(p4);
-        Patient p5 = new Patient("Ed", 18, "Typhoid");
+        PatientDoublyLinked p5 = new PatientDoublyLinked("Ed", 18, "Typhoid");
         patientListStart.addPatient(p5);
-        Patient p6 = new Patient("Fiona", 37, "Leprosy");
+        PatientDoublyLinked p6 = new PatientDoublyLinked("Fiona", 37, "Leprosy");
         patientListStart.addPatient(p6);
-        Patient p7 = new Patient("George", 50, "Bronchitis");
+        PatientDoublyLinked p7 = new PatientDoublyLinked("George", 50, "Bronchitis");
         patientListStart.addPatient(p7);
-        Patient p8 = new Patient("Helen", 33, "Asthma");
+        PatientDoublyLinked p8 = new PatientDoublyLinked("Helen", 33, "Asthma");
         patientListStart.addPatient(p8);
-        Patient p9 = new Patient("Ian", 74, "Eczema");
+        PatientDoublyLinked p9 = new PatientDoublyLinked("Ian", 74, "Eczema");
         patientListStart.addPatient(p9);
-        Patient p10 = new Patient("John", 21, "Mumps");
+        PatientDoublyLinked p10 = new PatientDoublyLinked("John", 21, "Mumps");
         patientListStart.addPatient(p10);
 
         printPatients(patientListStart);
@@ -58,7 +58,7 @@ public class HospitalDoublyLinked {
         printPatients(patientListStart);
     }
 
-    private void printPatients(Patient patient) {
+    private void printPatients(PatientDoublyLinked patient) {
         if (patient == patientListStart) {
             System.out.println("\n========================================");
         }
@@ -75,9 +75,12 @@ public class HospitalDoublyLinked {
 
     private void deleteFirstPatient() {
         patientListStart = patientListStart.getNextPatient();
+        if (patientListStart != null) {
+            patientListStart.setPreviousPatient(null);
+        }
     }
 
-    private int listLengthRecursive(Patient patient) {
+    private int listLengthRecursive(PatientDoublyLinked patient) {
         if (patient == null) {
             return 0;
         }
@@ -88,8 +91,8 @@ public class HospitalDoublyLinked {
         }
     }
 
-    private int listLengthIterative(Patient patient) {
-        Patient nextPatient = patientListStart;
+    private int listLengthIterative(PatientDoublyLinked patient) {
+        PatientDoublyLinked nextPatient = patientListStart;
         int length = 0;
         while(nextPatient != null) {
             length++;

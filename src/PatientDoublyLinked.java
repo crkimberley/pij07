@@ -31,7 +31,9 @@ public class PatientDoublyLinked {
             return false;
         } else if (nextPatient.name.equals(patient.name)) {
             nextPatient = nextPatient.nextPatient;
-            nextPatient.previousPatient = this;
+            if (nextPatient != null) {
+                nextPatient.previousPatient = this;
+            }
             System.out.println(patient.name + " deleted");
             return true;
         } else {
@@ -53,5 +55,9 @@ public class PatientDoublyLinked {
 
     public PatientDoublyLinked getNextPatient() {
         return nextPatient;
+    }
+
+    public void setPreviousPatient(PatientDoublyLinked previousPatient) {
+        this.previousPatient = previousPatient;
     }
 }
