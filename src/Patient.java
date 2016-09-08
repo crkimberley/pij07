@@ -32,6 +32,7 @@ public class Patient {
             // We found it! It is the next one!
             // Now link this patient to the one after the next
             nextPatient = nextPatient.nextPatient;
+            System.out.println(patient.name + " deleted");
             return true;
         } else {
             return nextPatient.deletePatient(patient);

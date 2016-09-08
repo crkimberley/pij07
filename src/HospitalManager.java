@@ -33,13 +33,34 @@ public class HospitalManager {
         Patient p10 = new Patient("John", 21, "Mumps");
         patientListStart.addPatient(p10);
 
-        System.out.println("================================");
         printPatients(patientListStart);
-        System.out.println("================================");
+
+        System.out.println("Delete a couple of patients...");
+        patientListStart.deletePatient(p5);
+        patientListStart.deletePatient(p7);
+        printPatients(patientListStart);
+
+        System.out.println("Delete 7 more patients...");
+        patientListStart.deletePatient(p2);
+        patientListStart.deletePatient(p3);
+        patientListStart.deletePatient(p4);
+        patientListStart.deletePatient(p6);
+        patientListStart.deletePatient(p8);
+        patientListStart.deletePatient(p9);
+        patientListStart.deletePatient(p10);
+        printPatients(patientListStart);
+
+        System.out.println("Demonstrate we can't delete firstPatient from inside the list");
+        patientListStart.deletePatient(firstPatient);
+        printPatients(patientListStart);
     }
 
     private void printPatients(Patient patient) {
+        if (patient == patientListStart) {
+            System.out.println("\n================================");
+        }
         if (patient == null) {
+            System.out.println("================================\n");
             return;
         }
         System.out.printf(" %-12s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
