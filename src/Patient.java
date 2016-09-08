@@ -1,7 +1,7 @@
 /**
  * @author crkimberley on 08/09/2016.
  */
-// Continuing example from the notes
+// Adding to example from the notes
 public class Patient {
     private String name;
     private int age;
