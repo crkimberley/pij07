@@ -59,18 +59,25 @@ public class HospitalDoublyLinked {
     }
 
     private void printPatients(PatientDoublyLinked patient) {
-        if (patient == patientListStart) {
-            System.out.println("\n========================================");
-        }
         if (patient == null) {
-            System.out.println("========================================\n"
-                    + " length = " + listLengthRecursive(patientListStart) + " (recursive)"
-                    + " " + listLengthIterative(patientListStart) + " (iterative)"
-                    + "\n========================================\n");
+            return;
+        }
+        if (patient.getNextPatient() == null) {
+            printPatientsDown(patient);
             return;
         }
         System.out.printf(" %-20s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
         printPatients(patient.getNextPatient());
+    }
+
+    private void printPatientsDown(PatientDoublyLinked patient) {
+        if (patient == null) {
+            System.out.println(" length = " + listLengthRecursive(patientListStart) + " (recursive)"
+                    + " " + listLengthIterative(patientListStart) + " (iterative)");
+            return;
+        }
+        System.out.printf(" %-20s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
+        printPatientsDown(patient.getPreviousPatient());
     }
 
     private void deleteFirstPatient() {

@@ -57,6 +57,10 @@ public class PatientDoublyLinked {
         return nextPatient;
     }
 
+    public PatientDoublyLinked getPreviousPatient() {
+        return previousPatient;
+    }
+
     public void setPreviousPatient(PatientDoublyLinked previousPatient) {
         this.previousPatient = previousPatient;
     }
