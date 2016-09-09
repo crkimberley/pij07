@@ -49,11 +49,20 @@ public class HospitalDoublyLinked {
         patientListStart.deletePatient(p10);
         printPatients(patientListStart, true);
 
+        System.out.println("\nAdd a new patient...");
+        PatientDoublyLinked p11 = new PatientDoublyLinked("Keisha", 19, "Scurvy");
+        patientListStart.addPatient(p11);
+        printPatients(patientListStart, true);
+
         System.out.println("\nDemonstrate we can't delete firstPatient from inside the list");
         patientListStart.deletePatient(firstPatient);
         printPatients(patientListStart, true);
 
         System.out.println("\nDelete firstPatient using deleteFirstPatient()");
+        deleteFirstPatient();
+        printPatients(patientListStart, true);
+
+        System.out.println("\nDelete remaining patient using deleteFirstPatient()");
         deleteFirstPatient();
         printPatients(patientListStart, true);
     }
