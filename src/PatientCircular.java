@@ -40,6 +40,8 @@ public class PatientCircular {
             }
             temp = temp.nextPatient;
             if (temp == this) {
+                System.out.println("\n!======================================!\n\t\t" + patient.name
+                        + " is not in the list\n!======================================!");
                 return false;
             }
         }
