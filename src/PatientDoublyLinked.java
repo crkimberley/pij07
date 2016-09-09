@@ -27,7 +27,12 @@ public class PatientDoublyLinked {
     }
 
     public boolean deletePatient(PatientDoublyLinked patient) {
+        if (patient == this) {
+            return false;
+        }
         if (nextPatient == null) {
+            System.out.println("!======================================!\n\t" + patient.name
+                    + " is not in the list\n!======================================!");
             return false;
         } else if (nextPatient.name.equals(patient.name)) {
             nextPatient = nextPatient.nextPatient;
