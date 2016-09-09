@@ -69,7 +69,7 @@ public class HospitalDoublyLinked {
 
     private void printPatients(PatientDoublyLinked patient, boolean up) {
         if (patient == patientListStart && up) {
-            System.out.println("========================================");
+            System.out.println("======= PRINTING UP & DOWN LIST ========");
         }
         if (patient == null) {
             System.out.println("========================================");
