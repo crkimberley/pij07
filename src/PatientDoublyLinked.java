@@ -31,7 +31,7 @@ public class PatientDoublyLinked {
             return false;
         }
         if (nextPatient == null) {
-            System.out.println("!======================================!\n\t" + patient.name
+            System.out.println("\n!======================================!\n\t\t" + patient.name
                     + " is not in the list\n!======================================!");
             return false;
         } else if (nextPatient.name.equals(patient.name)) {

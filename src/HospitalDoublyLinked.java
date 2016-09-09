@@ -73,7 +73,7 @@ public class HospitalDoublyLinked {
 
     private void printPatients(PatientDoublyLinked patient, boolean up) {
         if (patient == patientListStart && up) {
-            System.out.println("======= PRINTING UP & DOWN LIST ========");
+            System.out.println("\n======= PRINTING UP & DOWN LIST ========");
         }
         if (patient == null) {
             System.out.println("========================================");
@@ -89,7 +89,7 @@ public class HospitalDoublyLinked {
                 return;
             }
         }
-        System.out.printf(" %-20s%-6d%12s\n", patient.getName(), patient.getAge(), patient.getIllness());
+        System.out.printf(" %-18s%-2d%18s\n", patient.getName(), patient.getAge(), patient.getIllness());
         printPatients((up ? patient.getNextPatient() : patient.getPreviousPatient()), up);
     }
 
