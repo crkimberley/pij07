@@ -10,6 +10,24 @@ public class PersonList {
         length = 0;
     }
 
+    // List length methods aren't necessary, as we have a length variable,
+    // but they're used for more recursion practice
+    private int listLengthRecursive() {
+        return listLengthRecursive(head);
+    }
+
+    private int listLengthRecursive(PersonNode p) {
+        if (p == null) {
+            return 0;
+        }
+        int length = 1;
+        if (p.next == null) {
+            return length;
+        } else {
+            return (1 + listLengthRecursive(p.next));
+        }
+    }
+
     public void addPerson(Person person) {
         PersonNode newPersonNode = new PersonNode(person);
         // If empty list - point head to new PersonNode
@@ -53,15 +71,20 @@ public class PersonList {
     }
 
     public void printList() {
-        PersonNode temp = head;
         System.out.println("\n=================================================================");
-        while (temp != null) {
-            System.out.println(temp);
-            temp = temp.next;
-        }
+        printList(head);
         System.out.println("-----------------------------------------------------------------");
-        System.out.println("\t\t\t\t\tLength of list = " + length);
+        System.out.println("\t\tLength of list = " + length + " (or using recursive method) " + listLengthRecursive());
         System.out.println("=================================================================\n");
+    }
+
+    // Recursive printing
+    public void printList(PersonNode node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node);
+        printList(node.next);
     }
 
     private static class PersonNode {
