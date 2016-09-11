@@ -1,48 +1,49 @@
 /**
  * @author crkimberley on 09/09/2016.
  */
+// Left & Right pointer variables used - as in FoC notes
 public class PersonListDoublyLinked {
-    private PersonNode head;
+    private PersonNode left, right;
     private int length;
 
     public PersonListDoublyLinked() {
-        head = null;
+        left = null;
+        right = null;
         length = 0;
     }
 
     public void addPerson(Person person) {
         PersonNode newPersonNode = new PersonNode(person);
-        // If empty list - point head to new PersonNode
-        if (head == null) {
-            head = newPersonNode;
+        newPersonNode.previous = right;
+        newPersonNode.next = null;
+        // If empty list - point left to new PersonNode
+        if (right == null) {
+            left = newPersonNode;
         } else {
-            // Go to end of list then add new PersonNode
-            PersonNode temp = head;
-            while (temp.next != null) {
-                temp = temp.next;
-            }
-            temp.next = newPersonNode;
-            newPersonNode.previous = temp;
+            right.next = newPersonNode;
         }
+        right = newPersonNode;
         length++;
     }
 
     public boolean deletePerson(Person person) {
         boolean found = false;
-        if (head != null) {
+        if (left != null) {
             // Special case: person to delete - 1st in list
-            if (head.person == person) {
-                found =true;
-                head = head.next;
-                if (head != null) {
-                    head.previous = null;
+            if (left.person == person) {
+                found = true;
+                left = left.next;
+                if (left != null) {
+                    left.previous = null;
+                } else {
+                    right = null;
                 }
             } else {
                 // Go through list until a match is found
-                PersonNode temp = head;
-                while (!found && temp.next != null) {
+                PersonNode temp = left;
+                while (!found && temp != right) {
                     if (temp.next.person.equals(person)) {
-                        found =true;
+                        found = true;
                         temp.next = temp.next.next;
                         if (temp.next != null) {
                             temp.next.previous = temp;
@@ -60,7 +61,7 @@ public class PersonListDoublyLinked {
     }
 
     public void printList() {
-        PersonNode temp = head;
+        PersonNode temp = left;
         System.out.println("\n================================================================================");
         while (temp != null) {
             System.out.println(temp);
