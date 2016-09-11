@@ -29,6 +29,8 @@ public class PersonList {
     }
 
     public void addPerson(Person person) {
+        addPerson(head, person);
+        /* Original iterative method
         PersonNode newPersonNode = new PersonNode(person);
         // If empty list - point head to new PersonNode
         if (head == null) {
@@ -41,7 +43,21 @@ public class PersonList {
             }
             temp.next = newPersonNode;
         }
-        length++;
+        length++;*/
+    }
+
+    public void addPerson(PersonNode node, Person person) {
+        if (head == null) {
+            head = new PersonNode(person);
+            length++;
+        } else {
+            if (node.next == null) {
+                node.next = new PersonNode(person);
+                length++;
+            } else {
+                addPerson(node.next, person);
+            }
+        }
     }
 
     public boolean deletePerson(Person person) {

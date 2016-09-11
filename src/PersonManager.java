@@ -13,13 +13,22 @@ public class PersonManager {
         Person p1 = new Person("Angela", 24, "mumps");
         Person p2 = new Person("Bob", 37, "cough");
         Person p3 = new Person("Claire", 41, "cold");
+        Person p4 = new Person("Doris", 87, "leprosy");
         Person p6 = new Person("Fiona", 19, "insane");
         Person p9 = new Person("Izzy", 45, "undead");
 
-        System.out.println("Add 3 people to list");
+        pList.printList();
+        System.out.println("Add p1 Angela to list");
         pList.addPerson(p1);
+        pList.printList();
+        System.out.println("Add p2 Bob to list");
         pList.addPerson(p2);
+        pList.printList();
+        System.out.println("Add p3 Claire to list");
         pList.addPerson(p3);
+        pList.printList();
+        System.out.println("Add p4 Doris to list");
+        pList.addPerson(p4);
         pList.printList();
 
         System.out.println("Delete p2 - Bob");
