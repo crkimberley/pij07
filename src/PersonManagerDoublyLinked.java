@@ -21,38 +21,38 @@ public class PersonManagerDoublyLinked {
         pList.addPerson(p1);
         pList.addPerson(p2);
         pList.addPerson(p3);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Delete p2 - Bob");
         pList.deletePerson(p2);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Delete p1 - Angela");
         pList.deletePerson(p1);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Delete p3 - Claire");
         pList.deletePerson(p3);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Add another person");
         pList.addPerson(p6);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Create a person, don't add to list, then try to delete");
         pList.deletePerson(p9);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Add another person");
         pList.addPerson(p10);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Delete p6 - Fiona");
         pList.deletePerson(p6);
-        pList.printList();
+        pList.printUpAndDown();
 
         System.out.println("Delete p10 - Jo");
         pList.deletePerson(p10);
-        pList.printList();
+        pList.printUpAndDown();
     }
 }

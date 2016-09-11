@@ -60,16 +60,33 @@ public class PersonListDoublyLinked {
         return found;
     }
 
-    public void printList() {
+    public void printUp() {
         PersonNode temp = left;
         System.out.println("\n================================================================================");
         while (temp != null) {
             System.out.println(temp);
             temp = temp.next;
         }
+        /*System.out.println("--------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\t\tLength of list = " + length);
+        System.out.println("================================================================================\n");*/
+    }
+
+    public void printDown() {
+        PersonNode temp = right;
+        System.out.println("================================================================================");
+        while (temp != null) {
+            System.out.println(temp);
+            temp = temp.previous;
+        }
         System.out.println("--------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t\tLength of list = " + length);
         System.out.println("================================================================================\n");
+    }
+
+    public void printUpAndDown() {
+        printUp();
+        printDown();
     }
 
     private static class PersonNode {
