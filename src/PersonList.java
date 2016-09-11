@@ -27,30 +27,29 @@ public class PersonList {
     }
 
     public boolean deletePerson(Person person) {
-        // Empty list
-        if (head == null) {
-            return false;
-        }
-        // Special case: person to delete - 1st in list
-        if (head.person == person) {
-            head = head.next;
-            System.out.println("DELETED: " + person.getName());
-            length--;
-            return true;
-        }
-        // Go through list until a match is found
-        PersonNode temp = head;
-        while (temp.next != null) {
-            if (temp.next.person.equals(person)) {
-                temp.next = temp.next.next;
-                System.out.println("DELETED: " + person.getName());
-                length--;
-                return true;
+        boolean found = false;
+        if (head != null) {
+            // Special case: person to delete - 1st in list
+            if (head.person == person) {
+                found =true;
+                head = head.next;
+            } else {
+                // Go through list until a match is found
+                PersonNode temp = head;
+                while (!found && temp.next != null) {
+                    if (temp.next.person.equals(person)) {
+                        found =true;
+                        temp.next = temp.next.next;
+                    }
+                    temp = temp.next;
+                }
             }
-            temp = temp.next;
         }
-        System.out.println(person.getName() + " is not in the list");
-        return false;
+        System.out.println(found ? "DELETED" : "NOT IN THE LIST");
+        if (found) {
+            length--;
+        }
+        return found;
     }
 
     public void printList() {
