@@ -83,8 +83,6 @@ public class PersonListDoublyLinked {
         }
 
         public String toString() {
-            /*return person + "\t(next: " + (next != null ? next.person.getName() : "END")
-                    + ", previous: " + (previous != null ? previous.person.getName() : "START") + ")";*/
             return person + "\tprevious: " + (previous != null ? previous.person.getName() : "START")
                     + ", next: " + (next != null ? next.person.getName() : "END");
         }
