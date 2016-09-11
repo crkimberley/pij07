@@ -11,7 +11,7 @@ public class PersonList {
     }
 
     // List length methods aren't necessary, as we have a length variable,
-    // but they're used for more recursion practice
+    // but they're used here for more recursion practice
     private int listLengthRecursive() {
         return listLengthRecursive(head);
     }
@@ -29,6 +29,7 @@ public class PersonList {
     }
 
     public void addPerson(Person person) {
+        // Call recursive method
         addPerson(head, person);
         /* Original iterative method
         PersonNode newPersonNode = new PersonNode(person);
@@ -46,6 +47,7 @@ public class PersonList {
         length++;*/
     }
 
+    // Recursive method
     public void addPerson(PersonNode node, Person person) {
         if (head == null) {
             head = new PersonNode(person);
@@ -61,7 +63,9 @@ public class PersonList {
     }
 
     public boolean deletePerson(Person person) {
-        boolean found = false;
+        // Call recursive method
+        return deletePerson(head, person);
+        /*boolean found = false;
         if (head != null) {
             // Special case: person to delete - 1st in list
             if (head.person == person) {
@@ -83,7 +87,32 @@ public class PersonList {
         if (found) {
             length--;
         }
-        return found;
+        return found;*/
+    }
+
+    // Recursive method
+    public boolean deletePerson(PersonNode node, Person person) {
+        // Empty list
+        if (head == null) {
+            return false;
+        }
+        //Special case: delete first element
+        if (head.person == person) {
+            head = head.next;
+            length--;
+            return true;
+        }
+        // Use recursion to check along the list
+        if (node.next != null) {
+            if (node.next.person.equals(person)) {
+                node.next = node.next.next;
+                length--;
+                return true;
+            }
+            return deletePerson(node.next, person);
+        } else {
+            return false;
+        }
     }
 
     public void printList() {

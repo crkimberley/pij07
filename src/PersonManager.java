@@ -47,8 +47,16 @@ public class PersonManager {
         pList.addPerson(p6);
         pList.printList();
 
-        System.out.println("Create a person, don't add to list, then try to delete");
+        System.out.println("Select a person that's not on the list and try to delete it");
         pList.deletePerson(p9);
+        pList.printList();
+
+        System.out.println("Delete p4 - Doris");
+        pList.deletePerson(p4);
+        pList.printList();
+
+        System.out.println("Delete p6 - Fiona");
+        pList.deletePerson(p6);
         pList.printList();
     }
 }
