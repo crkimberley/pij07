@@ -58,7 +58,9 @@ public class IntArrayToListTest {
         System.out.println(backwardsList);
         System.out.println();
         System.out.println("Bubble Sort the linked list...");
+        long startTime = System.currentTimeMillis();
         System.out.println(ListUtilities.bubbleSort(backwardsList));
+        System.out.println("Sort duration = " + (double) (System.currentTimeMillis() - startTime) / 1000 + " seconds");
         System.out.println();
     }
 }
