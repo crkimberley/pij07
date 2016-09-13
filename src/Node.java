@@ -27,7 +27,7 @@ public class Node {
             return "Linked List: " + sb;
         }
         sb.append(node.number);
-        sb.append(node.next != null ? ", " : "");
+        sb.append(node.next != null ? "," : "");
         return listStringBuilder(node.next, sb);
     }
 

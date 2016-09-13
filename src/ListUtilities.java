@@ -9,4 +9,16 @@ public class ListUtilities {
         }
         return listStart;
     }
+
+    public static void intArrayPrint(int[] intArray) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i : intArray) {
+            sb.append(i);
+            sb.append(",");
+        }
+        // Remove final comma
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("]");
+        System.out.println("Array: " + sb);
+    }
 }

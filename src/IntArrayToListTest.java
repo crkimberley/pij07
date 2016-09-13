@@ -8,6 +8,8 @@ public class IntArrayToListTest {
     }
 
     private void launch() {
-        System.out.println(ListUtilities.intArrayToList(new int[] {0, 7, 9, 5, 7, 3, 4, 6, 1, 9, 9}));
+        int[] testArray = {0, 7, 9, 5, 7, 3, 4, 6, 1, 9, 9};
+        ListUtilities.intArrayPrint(testArray);
+        System.out.println(ListUtilities.intArrayToList(testArray));
     }
 }
