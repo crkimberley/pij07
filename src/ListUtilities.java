@@ -31,10 +31,10 @@ public class ListUtilities {
     }
 
     public static Node bubbleSort(Node list) {
-        boolean done = false;
-        while (!done) {
-            Node currentNode = list;
+        boolean done;
+        do {
             done = true;
+            Node currentNode = list;
             while (currentNode.getNext() != null) {
                 if (currentNode.getNumber() > currentNode.getNext().getNumber()) {
                     done = false;
@@ -44,7 +44,7 @@ public class ListUtilities {
                 }
                 currentNode = currentNode.getNext();
             }
-        }
+        } while (!done);
         return list;
     }
 }
