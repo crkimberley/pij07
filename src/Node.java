@@ -10,6 +10,18 @@ public class Node {
         next = null;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public Node getNext() {
+        return next;
+    }
+
     public void addNode(Node newNode) {
         if (next == null) {
             next = newNode;

@@ -29,4 +29,22 @@ public class ListUtilities {
         sb.append("]");
         System.out.println("Array: " + sb);
     }
+
+    public static Node bubbleSort(Node list) {
+        boolean done = false;
+        while (!done) {
+            Node currentNode = list;
+            done = true;
+            while (currentNode.getNext() != null) {
+                if (currentNode.getNumber() > currentNode.getNext().getNumber()) {
+                    done = false;
+                    int temp = currentNode.getNumber();
+                    currentNode.setNumber(currentNode.getNext().getNumber());
+                    currentNode.getNext().setNumber(temp);
+                }
+                currentNode = currentNode.getNext();
+            }
+        }
+        return list;
+    }
 }
