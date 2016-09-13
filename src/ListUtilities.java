@@ -33,9 +33,12 @@ public class ListUtilities {
     public static Node bubbleSort(Node list) {
         boolean done;
         do {
+            // Done variable will stay true if no swaps are done - when sorting is finished
             done = true;
+            // Return to start of list for each pass
             Node currentNode = list;
             while (currentNode.getNext() != null) {
+                // Swap pair if out of order
                 if (currentNode.getNumber() > currentNode.getNext().getNumber()) {
                     done = false;
                     int temp = currentNode.getNumber();
