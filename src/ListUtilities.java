@@ -10,6 +10,14 @@ public class ListUtilities {
         return listStart;
     }
 
+    public static Node intArrayToSortedList(int[] intArray) {
+        Node listStart = new Node(intArray[0]);
+        for (int i=1; i<intArray.length; i++) {
+            listStart.addNodeToSortedList(new Node(intArray[i]));
+        }
+        return listStart;
+    }
+
     public static void intArrayPrint(int[] intArray) {
         StringBuilder sb = new StringBuilder("[");
         for (int i : intArray) {

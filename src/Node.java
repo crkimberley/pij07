@@ -18,6 +18,38 @@ public class Node {
         }
     }
 
+    public void addIntToSortedList(int number) {
+        addNodeToSortedList(new Node(number));
+    }
+
+    public void addNodeToSortedList(Node newNode) {
+        // if new number < listStart.number
+        if (newNode.number < number) {
+            int temp = number;
+            number = newNode.number;
+            newNode.number = temp;
+            newNode.next = next;
+            next = newNode;
+        } else {
+            addNodeToSortedListRecursive(newNode);
+        }
+    }
+
+    private void addNodeToSortedListRecursive(Node newNode) {
+        if (next == null) {
+            next = newNode;
+        } else if (newNode.number > next.number) {
+            if (next.next == null) {
+                next.next = newNode;
+            } else {
+                next.addNodeToSortedList(newNode);
+            }
+        } else {
+            newNode.next = next;
+            next = newNode;
+        }
+    }
+
     public String toString() {
         return listStringBuilder(this, new StringBuilder());
     }
@@ -31,7 +63,6 @@ public class Node {
         return listStringBuilder(node.next, sb);
     }
 
-    /*
     public void printList() {
         Node currentNode = this;
         do {
@@ -40,5 +71,4 @@ public class Node {
         } while (currentNode != null);
         System.out.println();
     }
-    */
 }
