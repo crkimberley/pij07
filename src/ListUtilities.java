@@ -10,6 +10,14 @@ public class ListUtilities {
         return listStart;
     }
 
+    public static NodeDoublyLinked intArrayToDoublyLinkedList(int[] intArray) {
+        NodeDoublyLinked listStart = new NodeDoublyLinked(intArray[0]);
+        for (int i=1; i<intArray.length; i++) {
+            listStart.addNode(new NodeDoublyLinked(intArray[i]));
+        }
+        return listStart;
+    }
+
     public static Node intArrayToSortedList(int[] intArray) {
         Node listStart = new Node(intArray[0]);
         for (int i=1; i<intArray.length; i++) {
@@ -49,5 +57,36 @@ public class ListUtilities {
             }
         } while (!done);
         return list;
+    }
+
+    public static NodeDoublyLinked cocktailSort(NodeDoublyLinked list) {
+        boolean done;
+        do {
+            // Done variable will stay true if no swaps are done - when sorting is finished
+            done = true;
+            // Return to start of list for each pass
+            NodeDoublyLinked currentNode = list;
+            while (currentNode.getNext() != null) {
+                // Swap pair if out of order
+                if (currentNode.getNumber() > currentNode.getNext().getNumber()) {
+                    done = false;
+                    int temp = currentNode.getNumber();
+                    currentNode.setNumber(currentNode.getNext().getNumber());
+                    currentNode.getNext().setNumber(temp);
+                }
+                currentNode = currentNode.getNext();
+            }
+            while (currentNode.getPrevious() != null) {
+                if (currentNode.getNumber() < currentNode.getPrevious().getNumber()) {
+                    done = false;
+                    int temp = currentNode.getNumber();
+                    currentNode.setNumber(currentNode.getPrevious().getNumber());
+                    currentNode.getPrevious().setNumber(temp);
+                }
+                currentNode = currentNode.getPrevious();
+            }
+        } while (!done);
+        return list;
+
     }
 }
