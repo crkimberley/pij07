@@ -76,6 +76,7 @@ public class ListUtilities {
                 }
                 currentNode = currentNode.getNext();
             }
+            // traverse in opposite direction
             while (currentNode.getPrevious() != null) {
                 if (currentNode.getNumber() < currentNode.getPrevious().getNumber()) {
                     done = false;
