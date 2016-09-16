@@ -12,6 +12,8 @@ public class CocktailSortTest {
         int[] array1 = {0, 7, 9, 5, 7, 3, 4, 6, 1, 9, 9};
         ListUtilities.intArrayPrint(array1);
         NodeDoublyLinked list1 = ListUtilities.intArrayToDoublyLinkedList(array1);
+        System.out.println("Print list with a for loop");
+        ListUtilities.printDoublyLinkedListNumbers(list1);
         System.out.println(list1);
         System.out.println();
         System.out.println("Cocktail Sort the linked list...");
