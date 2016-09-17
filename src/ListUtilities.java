@@ -27,18 +27,15 @@ public class ListUtilities {
     }
 
     public static void intArrayPrint(int[] intArray) {
-        System.out.print(intArrayToString(intArray));
+        System.out.print(intArrayToString(intArray) + "\n");
     }
 
     public static String intArrayToString(int[] intArray) {
         StringBuilder sb = new StringBuilder("[");
-        for (int i : intArray) {
-            sb.append(i);
-            sb.append(",");
+        for (int i=0; i<intArray.length; i++) {
+            sb.append(intArray[i]);
+            sb.append(i < intArray.length - 1 ? "," : "]");
         }
-        // Remove final comma
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append("]");
         return sb.toString();
     }
 
@@ -47,30 +44,56 @@ public class ListUtilities {
     }
 
     public static String intArrayEndsToString(int[] intArray) {
-        if (intArray.length <=10) {
+        if (intArray.length <=20) {
             return intArrayToString(intArray);
         } else {
-            int[] top = new int[5];
-            int[] tail = new int[5];
-            System.arraycopy(intArray, 0, top, 0, 5);
-            System.arraycopy(intArray, intArray.length - 5, tail, 0, 5);
             StringBuilder sb = new StringBuilder("[");
-            for (int i : top) {
-                sb.append(i);
-                sb.append(",");
+            for (int i=0; i<10; i++) {
+                sb.append(intArray[i]);
+                sb.append(i < 9 ? "," : "...");
             }
-            // Remove final comma
-            sb.deleteCharAt(sb.length() - 1);
-            sb.append("...");
-            for (int i : tail) {
-                sb.append(i);
-                sb.append(",");
+            for (int i=10; i>0; i--) {
+                sb.append(intArray[intArray.length - i]);
+                sb.append(i > 1 ? "," : "]");
             }
-            // Remove final comma
-            sb.deleteCharAt(sb.length() - 1);
-            sb.append("]");
             return sb.toString();
         }
+    }
+
+    public static int lengthOfDoublyLinkedList(NodeDoublyLinked list) {
+        int length = 0;
+        for (NodeDoublyLinked i = list; i != null; i = i.getNext()) {
+            length++;
+        }
+        return length;
+    }
+
+    public static NodeDoublyLinked endOfDoublyLinkedList(NodeDoublyLinked list) {
+        NodeDoublyLinked i;
+        for (i = list; i.getNext() != null; i = i.getNext()) {}
+        return i;
+    }
+
+    public static String intDoublyLinkedListEndsToString(NodeDoublyLinked list) {
+        if (lengthOfDoublyLinkedList(list) <= 20) {
+            return list.toString();
+        }
+        StringBuilder sb = new StringBuilder();
+        NodeDoublyLinked temp = list;
+        for (int i = 0; i<10 ; i++) {
+            sb.append(temp.getNumber());
+            sb.append(i < 9 ? "," : "...");
+            temp = temp.getNext();
+        }
+        StringBuilder sb2 = new StringBuilder();
+        temp = endOfDoublyLinkedList(list);
+        for (int i = 0; i<10 ; i++) {
+            sb2.insert(0, i > 0 ? "," : "");
+            sb2.insert(0, temp.getNumber());
+            temp = temp.getPrevious();
+        }
+        sb.append(sb2);
+        return sb.toString();
     }
 
     public static Node bubbleSort(Node list) {
@@ -80,6 +103,27 @@ public class ListUtilities {
             done = true;
             // Return to start of list for each pass
             Node currentNode = list;
+            while (currentNode.getNext() != null) {
+                // Swap pair if out of order
+                if (currentNode.getNumber() > currentNode.getNext().getNumber()) {
+                    done = false;
+                    int temp = currentNode.getNumber();
+                    currentNode.setNumber(currentNode.getNext().getNumber());
+                    currentNode.getNext().setNumber(temp);
+                }
+                currentNode = currentNode.getNext();
+            }
+        } while (!done);
+        return list;
+    }
+
+    public static NodeDoublyLinked bubbleSort(NodeDoublyLinked list) {
+        boolean done;
+        do {
+            // Done variable will stay true if no swaps are done - when sorting is finished
+            done = true;
+            // Return to start of list for each pass
+            NodeDoublyLinked currentNode = list;
             while (currentNode.getNext() != null) {
                 // Swap pair if out of order
                 if (currentNode.getNumber() > currentNode.getNext().getNumber()) {
@@ -128,7 +172,6 @@ public class ListUtilities {
     }
 
     public static NodeDoublyLinked insertionSort1(NodeDoublyLinked list) {
-        NodeDoublyLinked nodeI = list;
         for (NodeDoublyLinked i = list; i != null; i = i.getNext()) {
             for (NodeDoublyLinked j = i; j != list && j.getPrevious().getNumber() > j.getNumber(); j = j.getPrevious()) {
                 int temp = j.getNumber();
