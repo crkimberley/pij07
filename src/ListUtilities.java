@@ -203,12 +203,12 @@ public class ListUtilities {
         if (lowerLimit == null || upperLimit == null || lowerLimit == upperLimit || lowerLimit == upperLimit.getNext()) {
             return;
         }
-        NodeDoublyLinked middle = partition(lowerLimit, upperLimit);
+        NodeDoublyLinked middle = partition1(lowerLimit, upperLimit);
         quickSort1(lowerLimit, middle.getPrevious());
         quickSort1(middle.getNext(), upperLimit);
     }
 
-    private static NodeDoublyLinked partition(NodeDoublyLinked lowerLimit, NodeDoublyLinked upperLimit) {
+    private static NodeDoublyLinked partition1(NodeDoublyLinked lowerLimit, NodeDoublyLinked upperLimit) {
         NodeDoublyLinked middle = lowerLimit;
         for (NodeDoublyLinked i = lowerLimit.getNext(); i != upperLimit.getNext(); i = i.getNext()) {
             if (i.getNumber() < lowerLimit.getNumber()) {

@@ -5,10 +5,11 @@ import java.util.Random;
  * @author crkimberley on 16/09/2016.
  */
 public class SortTest {
-    int LARGE_ARRAY_LENGTH = 15000;
-    int RANDOM_NUMBER_RANGE = 10000;
+    int LARGE_ARRAY_LENGTH = 20000;
+    int RANDOM_NUMBER_RANGE = 20000;
     int IDENTICAL_VALUE = 13;
     int[] array;
+    Random rand = new Random();
 
     private enum SortAlgorithm {
         BUBBLE, COCKTAIL, INSERTION1, INSERTION2, QUICK1, QUICK2, QUICK3
@@ -104,7 +105,7 @@ public class SortTest {
         arrayCopySortAndMeasureTime(SortAlgorithm.INSERTION2);
         arrayToListThenSortAndMeasureTime(SortAlgorithm.QUICK1);
         arrayCopySortAndMeasureTime(SortAlgorithm.QUICK1);
-        //arrayCopySortAndMeasureTime(SortAlgorithm.QUICK2);
+        arrayCopySortAndMeasureTime(SortAlgorithm.QUICK2);
         arrayCopySortAndMeasureTime(SortAlgorithm.QUICK3);
         System.out.println();
     }
