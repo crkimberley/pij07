@@ -73,10 +73,15 @@ public class ArraySortAlgorithms {
         if (lowerLimit >= upperLimit) {
             return;
         }
-        // partition the array around the value at array[lowerLimit]
+        int middleIndex = partition(array, lowerLimit, upperLimit);
+        quickSort1(array, lowerLimit, middleIndex - 1);
+        quickSort1(array, middleIndex + 1, upperLimit);
+    }
+
+    private static int partition(int[] array, int lowerLimit, int upperLimit) {
         int middleIndex = lowerLimit;
         for (int i = lowerLimit + 1; i <= upperLimit; i++) {
-            // move ith element if less than partition pivot
+            // move ith element if less than partition pivot element
             if (array[i] <= array[lowerLimit]) {
                 // increment middleIndex - which will index the location of the new small element
                 middleIndex++;
@@ -86,9 +91,7 @@ public class ArraySortAlgorithms {
         }
         // swap lowerLimit element into correct place
         swap(array, lowerLimit, middleIndex);
-        // recursively sort lower & upper partitions
-        quickSort1(array, lowerLimit, (middleIndex - 1));
-        quickSort1(array, middleIndex + 1, upperLimit);
+        return middleIndex;
     }
 
     private static void swap(int[] array, int x, int y) {
