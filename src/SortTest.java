@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -5,12 +6,12 @@ import java.util.Random;
  */
 public class SortTest {
     int LARGE_ARRAY_LENGTH = 15000;
-    int RANDOM_NUMBER_RANGE = 1000;
-    int IDENTICAL_VALUE = 999983;
+    int RANDOM_NUMBER_RANGE = 10000;
+    int IDENTICAL_VALUE = 13;
     int[] array;
 
     private enum SortAlgorithm {
-        BUBBLE, INSERTION1
+        BUBBLE, COCKTAIL, INSERTION1, INSERTION2, QUICK1, QUICK2, QUICK3
     }
 
     public static void main(String[] args) {
@@ -52,7 +53,13 @@ public class SortTest {
         switch (algo) {
             case BUBBLE: ListUtilities.bubbleSort(list);
                 break;
+            case COCKTAIL: ListUtilities.cocktailSort(list);
+                break;
             case INSERTION1: ListUtilities.insertionSort1(list);
+                break;
+            case INSERTION2: ListUtilities.insertionSort2(list);
+                break;
+            case QUICK1: ListUtilities.quickSort1(list);
                 break;
         }
         sortTime = System.currentTimeMillis() - sortTime;
@@ -60,10 +67,45 @@ public class SortTest {
         System.out.println(ListUtilities.intDoublyLinkedListEndsToString(list));
     }
 
+    private void arrayCopySortAndMeasureTime(SortAlgorithm algo) {
+        int[] copiedArray = Arrays.copyOf(array, array.length);
+        System.out.print("(Array) " + algo + " ");
+        long sortTime = System.currentTimeMillis();
+        switch (algo) {
+            case BUBBLE: ArraySortAlgorithms.bubbleSort(copiedArray);
+                break;
+            case COCKTAIL: ArraySortAlgorithms.cocktailSort(copiedArray);
+                break;
+            case INSERTION1: ArraySortAlgorithms.insertionSort1(copiedArray);
+                break;
+            case INSERTION2: ArraySortAlgorithms.insertionSort2(copiedArray);
+                //break;
+            case QUICK1: ArraySortAlgorithms.quickSort1(copiedArray);
+                break;
+            case QUICK2: ArraySortAlgorithms.quickSort2(copiedArray);
+                break;
+            case QUICK3: ArraySortAlgorithms.quickSort3(copiedArray);
+                break;
+        }
+        sortTime = System.currentTimeMillis() - sortTime;
+        System.out.println("Sort time = " + sortTime + " ms");
+        System.out.println(ListUtilities.intArrayEndsToString(copiedArray));
+    }
+
     private void compareSortAlgorithms() {
         System.out.println("Array length " + array.length + " --- " + ListUtilities.intArrayEndsToString(array));
         arrayToListThenSortAndMeasureTime(SortAlgorithm.BUBBLE);
+        arrayCopySortAndMeasureTime(SortAlgorithm.BUBBLE);
+        arrayToListThenSortAndMeasureTime(SortAlgorithm.COCKTAIL);
+        arrayCopySortAndMeasureTime(SortAlgorithm.COCKTAIL);
         arrayToListThenSortAndMeasureTime(SortAlgorithm.INSERTION1);
+        arrayCopySortAndMeasureTime(SortAlgorithm.INSERTION1);
+        arrayToListThenSortAndMeasureTime(SortAlgorithm.INSERTION2);
+        arrayCopySortAndMeasureTime(SortAlgorithm.INSERTION2);
+        arrayToListThenSortAndMeasureTime(SortAlgorithm.QUICK1);
+        arrayCopySortAndMeasureTime(SortAlgorithm.QUICK1);
+        //arrayCopySortAndMeasureTime(SortAlgorithm.QUICK2);
+        arrayCopySortAndMeasureTime(SortAlgorithm.QUICK3);
         System.out.println();
     }
 }
