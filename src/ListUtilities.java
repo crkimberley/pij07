@@ -199,87 +199,31 @@ public class ListUtilities {
         quickSort1(list, endOfDoublyLinkedList(list));
     }
 
-    public static void quickSort1(NodeDoublyLinked lowerLimit, NodeDoublyLinked upperLimit) {
-        if (lowerLimit == null || upperLimit == null) {
+    private static void quickSort1(NodeDoublyLinked lowerLimit, NodeDoublyLinked upperLimit) {
+        if (lowerLimit == null || upperLimit == null || lowerLimit == upperLimit || lowerLimit == upperLimit.getNext()) {
             return;
         }
-        // if (lowerLimit >= upperLimit) {return;}
-        for (NodeDoublyLinked x = upperLimit; x != null; x = x.getNext() ) {
-            if (x == lowerLimit) {
-                return;
-            }
-        }
+        NodeDoublyLinked middle = partition(lowerLimit, upperLimit);
+        quickSort1(lowerLimit, middle.getPrevious());
+        quickSort1(middle.getNext(), upperLimit);
+    }
+
+    private static NodeDoublyLinked partition(NodeDoublyLinked lowerLimit, NodeDoublyLinked upperLimit) {
         NodeDoublyLinked middle = lowerLimit;
-        NodeDoublyLinked i = lowerLimit;
-        boolean upperLimitReached = false;
-        while (!upperLimitReached) {
-            i = i.getNext();
-            if (i.getNumber() <= lowerLimit.getNumber()) {
+        for (NodeDoublyLinked i = lowerLimit.getNext(); i != upperLimit.getNext(); i = i.getNext()) {
+            if (i.getNumber() < lowerLimit.getNumber()) {
                 middle = middle.getNext();
                 swap(middle, i);
             }
-            if (i == upperLimit) {
-                upperLimitReached = true;
-            }
         }
         swap(lowerLimit, middle);
-        quickSort1(lowerLimit, middle.getPrevious());
-        quickSort1(middle.getNext(), upperLimit);
+        return middle;
     }
 
     private static void swap(NodeDoublyLinked x, NodeDoublyLinked y) {
         int temp = x.getNumber();
         x.setNumber(y.getNumber());
         y.setNumber(temp);
-    }
-
-    private static void qSort1(NodeDoublyLinked l, NodeDoublyLinked u) {
-        //System.out.println("Just arrived in qSort1 and l = " + l.getNumber() + " and u = " + u.getNumber());
-        for (NodeDoublyLinked x = u; x != null; x = x.getNext()) {
-            System.out.println("x = " + x.getNumber());
-            if (x == l) {
-                return ;
-            }
-        }
-        NodeDoublyLinked m = l;
-        //System.out.println("l = " + l.getNumber() + ", m = " + m.getNumber() + ", u = " + u.getNext());
-        for (NodeDoublyLinked i = l.getNext(); i.getNext() != u; i = i.getNext()) {
-            if (i.getNumber() < l.getNumber()) {
-                m = m.getNext();
-                System.out.println("l = " + l.getNumber() + ", m = " + m.getNumber() + ", u = " + u.getNext());
-                int temp = i.getNumber();
-                i.setNumber(m.getNumber());
-                m.setNumber(temp);
-                System.out.println("l = " + l.getNumber() + ", m = " + m.getNumber() + ", u = " + u.getNext());
-            }
-        }
-        int temp = l.getNumber();
-        l.setNumber(m.getNumber());
-        //System.out.println("l = " + l.getNumber() + ", m = " + m.getNumber() + ", u = " + u.getNext());
-        m.setNumber(temp);
-        //System.out.println("l = " + l.getNumber() + ", m = " + m.getNumber() + ", u = " + u.getNext());
-        qSort1(l, m.getPrevious());
-        qSort1(m.getNext(), u);
-    }
-
-    public static void qSort1(int[] array, int l, int u) {
-        if (l >= u) {
-            return;
-        }
-        int m = l;
-        for (int i=l+1; i<=u; i++) {
-            if (array[i] < array[l]) {
-                m++;
-                int temp = array[m];
-                array[m] = array[i];
-                array[i] = temp;
-            }
-        }
-        int temp = array[l];
-        array[l] = array[m];
-        array[m] = temp;
-        qSort1(array, l, m-1);
-        qSort1(array, m+1, u);
     }
 
     public static void printDoublyLinkedListNumbers(NodeDoublyLinked list) {
