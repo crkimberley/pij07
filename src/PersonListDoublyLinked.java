@@ -30,7 +30,7 @@ public class PersonListDoublyLinked {
         boolean found = false;
         if (left != null) {
             // Special case: person to delete - 1st in list
-            if (left.person == person) {
+            if (left.person.equals(person)) {
                 found = true;
                 left = left.next;
                 if (left != null) {
@@ -47,6 +47,8 @@ public class PersonListDoublyLinked {
                         temp.next = temp.next.next;
                         if (temp.next != null) {
                             temp.next.previous = temp;
+                        } else {
+                            right = temp;
                         }
                     }
                     temp = temp.next;
