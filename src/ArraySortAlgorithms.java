@@ -98,8 +98,7 @@ public class ArraySortAlgorithms {
             // move ith element if less than partition1 pivot element
             if (array[i] < array[lowerLimit]) {
                 // increment middleIndex - which will index the location of the new small element
-                //middleIndex++;
-                //swap ith element with middleIndex element
+                // and swap ith element with middleIndex element
                 swap(array, i, ++middleIndex);
             }
         }
