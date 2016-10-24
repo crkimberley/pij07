@@ -96,11 +96,11 @@ public class ArraySortAlgorithms {
         int middleIndex = lowerLimit;
         for (int i = lowerLimit + 1; i <= upperLimit; i++) {
             // move ith element if less than partition1 pivot element
-            if (array[i] <= array[lowerLimit]) {
+            if (array[i] < array[lowerLimit]) {
                 // increment middleIndex - which will index the location of the new small element
-                middleIndex++;
+                //middleIndex++;
                 //swap ith element with middleIndex element
-                swap(array, i, middleIndex);
+                swap(array, i, ++middleIndex);
             }
         }
         // swap lowerLimit element into correct place
